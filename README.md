@@ -36,28 +36,20 @@ Breakout: Move and aim in first person, shoot enemies, collect energy cells, man
 - Clear variable names
 ## List of 3+ extension features with brief explanation
 1. Gameplay Mechanics
-- Difficulty scaling system (speed increases, more enemies, limited resources)
-- Each wave increase drone speed, spawn rate and boosts turret
-- Power-up system with temporary effects
-- Overcharge speed boost and damage for about 5 seconds and timer showing timer
-- Multiple player abilities or attack types
-- Primary with the rifle
-- Secondary with the charged burst
+- Difficulty scaling system (speed increases, more enemies, limited resources): Each wave increase drone speed, spawn rate and boosts turret
+- Power-up system with temporary effects: Overcharge speed boost and damage for about 5 seconds and timer showing timer
+- Multiple player abilities or attack types: Primary with the rifle and secondary with the charged burst
 - Enemy AI with different behaviors (chase player, patrol patterns, ranged attacks)
 - Drones patrol and detect player then chase and then return to patrol if player breaks line of sight
-- Turrets track the player and fire in bursts and then stop firing when player breaks line of sight
 2. Technical Features
 - Camera follow system or dynamic camera movement
 - Recoil on fire
 - Coroutines for timed events or delays
-- Power up time and turret burst windows
 - Object pooling for performance optimization
 - For bullets and explosions to reduce stutter on heavy impact
 3. Content & Polish
 - Persistent high score system
 - Environmental hazards or dynamic obstacles
-- Warning light before activating
-- Tutorial or instructions screen
 ## Challenges encountered and solutions
 - Aim feel and camera needed to be adjusted because mouse felt weird so I added sensitivity slide and light smoothing
 - Wave pacing was too easy so added spawn curves with max drones and short rest windows
