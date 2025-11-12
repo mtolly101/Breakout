@@ -2,7 +2,7 @@
 ## Playable Unity Project: 
 # Game concept and genre
 ## Option 1: FPS Game Extension
-Breakout: You play as a test subject in a cyber lab overrun by rogue drones. Move and aim in first person, shoot enemies, collect energy cells, manage health and ammo, and survive waves until extraction.
+Breakout: Move and aim in first person, shoot enemies, collect energy cells, manage health and ammo, and survive waves until extraction.
 ## What the player does:
 - Move with WASD, aim with mouse, shoot and reload
 - Collect energy cells to increase score and recharge ammo
@@ -17,7 +17,7 @@ Breakout: You play as a test subject in a cyber lab overrun by rogue drones. Mov
 - WASD movement with optional sprint and jump
 - Input is responsive and predictable
 2. Game Objects & Spawning
-- 3 prefabs: The enemy is a drone, The obstacle is a turret, The collectible is an energy cell
+- 3 prefabs: The enemy is a drone, obstacle is a turret, collectible is an energy cell
 - Random time spawning
 3. Game State Management
 - isGameOver boolean controls is game play is active
@@ -32,7 +32,7 @@ Breakout: You play as a test subject in a cyber lab overrun by rogue drones. Mov
 - Score, timer, ammo and health
 - Game over and restart button
 6. Code Quality
-- Well organized scripts in PlayerController, GunController, EnemyAI, TurretController, SpawnManager, GameManager, UIManager, PowerUp
+- Well organized scripts
 - Clear variable names
 ## List of 3+ extension features with brief explanation
 1. Gameplay Mechanics
@@ -54,8 +54,7 @@ Breakout: You play as a test subject in a cyber lab overrun by rogue drones. Mov
 - Object pooling for performance optimization
 - For bullets and explosions to reduce stutter on heavy impact
 3. Content & Polish
-- Persistent high score system (using PlayerPrefs)
-- Pause menu with resume functionality
+- Persistent high score system
 - Environmental hazards or dynamic obstacles
 - Warning light before activating
 - Tutorial or instructions screen
