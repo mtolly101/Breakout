@@ -11,7 +11,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Transform weaponCamera;
     [SerializeField] Image[] shieldBars;
     [SerializeField] GameObject gameOverContainer;
-
     int currentHealth;
     int gameOverVirtualCameraPriority = 20;
 
@@ -23,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        var buffs = GetComponent<PlayerBuffs>();
+        if (buffs != null && buffs.overcharged) return;
         currentHealth -= amount;
         AdjustShieldUI();
 

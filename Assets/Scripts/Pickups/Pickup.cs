@@ -10,8 +10,8 @@ public abstract class Pickup : MonoBehaviour
     {
         transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f);
     }
-
-    void OnTriggerEnter(Collider other) 
+    
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(PLAYER_STRING))
         {
@@ -20,6 +20,6 @@ public abstract class Pickup : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
+    
     protected abstract void OnPickup(ActiveWeapon activeWeapon);
 }

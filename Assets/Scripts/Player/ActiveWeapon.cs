@@ -10,19 +10,18 @@ public class ActiveWeapon : MonoBehaviour
     [SerializeField] Camera weaponCamera;
     [SerializeField] GameObject zoomVignette;
     [SerializeField] TMP_Text ammoText;
-
     WeaponSO currentWeaponSO;
     Animator animator;
     StarterAssetsInputs starterAssetsInputs;
     FirstPersonController firstPersonController;
     Weapon currentWeapon;
-
     const string SHOOT_STRING = "Shoot";
-
     float timeSinceLastShot = 0f;
     float defaultFOV;
     float defaultRotationSpeed;
     int currentAmmo;
+    bool charging = false;
+    float chargeStarted = 0f;
 
     void Awake()
     {
@@ -43,6 +42,7 @@ public class ActiveWeapon : MonoBehaviour
     {
         HandleShoot();
         HandleZoom();
+        HandleSecondaryFire();
     }
 
     public void AdjustAmmo(int amount) 
@@ -94,19 +94,44 @@ public class ActiveWeapon : MonoBehaviour
     {
         if (!currentWeaponSO.CanZoom) return;
 
-        if (starterAssetsInputs.zoom) 
+        if (starterAssetsInputs.zoom)
         {
             playerFollowCamera.m_Lens.FieldOfView = currentWeaponSO.ZoomAmount;
             weaponCamera.fieldOfView = currentWeaponSO.ZoomAmount;
             zoomVignette.SetActive(true);
             firstPersonController.ChangeRotationSpeed(currentWeaponSO.ZoomRotationSpeed);
         }
-        else 
+        else
         {
             playerFollowCamera.m_Lens.FieldOfView = defaultFOV;
             weaponCamera.fieldOfView = defaultFOV;
             zoomVignette.SetActive(false);
             firstPersonController.ChangeRotationSpeed(defaultRotationSpeed);
+        }
+    }
+
+    void HandleSecondaryFire()
+    {
+        if (Input.GetButtonDown("Fire2"))
+        {
+            charging = true;
+            chargeStarted = Time.time;
+        }
+
+        if (Input.GetButtonUp("Fire2") && charging)
+        {
+            charging = false;
+            if (currentAmmo <= 0) return;
+
+            bool full = (Time.time - chargeStarted) >= currentWeaponSO.ChargeTime;
+            float baseDamage = full ? currentWeaponSO.ChargedDamage : currentWeaponSO.ChargedDamage * 0.5f;
+
+            var buffs = GetComponentInParent<PlayerBuffs>();
+            float mult = (buffs != null && buffs.overcharged) ? buffs.damageMult : 1f;
+
+            currentWeapon.ShootWithDamage(baseDamage * mult, currentWeaponSO);
+            animator.Play("Shoot", 0, 0f);
+            AdjustAmmo(-1);
         }
     }
 }

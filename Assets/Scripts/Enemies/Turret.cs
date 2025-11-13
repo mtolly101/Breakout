@@ -9,7 +9,6 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform projectileSpawnPoint;
     [SerializeField] float fireRate = 2f;
     [SerializeField] int damage = 2;
-
     PlayerHealth player;
 
     void Start()
@@ -25,12 +24,17 @@ public class Turret : MonoBehaviour
 
     IEnumerator FireRoutine()
     {
-        while(player) 
+        while (player)
         {
             yield return new WaitForSeconds(fireRate);
             Projectile newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
             newProjectile.transform.LookAt(playerTargetPoint);
             newProjectile.Init(damage);
         }
+    }
+    
+    public void MakeFaster(float step, float minFireRate)
+    {
+        fireRate = Mathf.Max(minFireRate, fireRate-step);
     }
 }
