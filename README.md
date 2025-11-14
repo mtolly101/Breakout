@@ -1,5 +1,5 @@
 # Mini-Project 2: 3D Game
-## Playable Unity Project: 
+## Playable Unity Project: https://play.unity.com/en/games/39a39c49-725c-4a89-a487-8ec930b48773/breakout
 # Game concept and genre
 ## Option 1: FPS Game Extension
 Breakout: Move and aim in first person, shoot enemies, collect energy cells, manage health and ammo, and survive waves until extraction.
